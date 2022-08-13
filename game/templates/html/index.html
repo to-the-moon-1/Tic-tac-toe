@@ -2,70 +2,61 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <title>Tic tac toe</title>
-</head>
-<body class="background">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+        <title>Tic tac toe</title>
+    </head>
+    <body class="background">
+        <div class="main_content">
+            {% if end_game == False %}
+            {% else %}
+                <div class="end_game">{{ end_game }}</div>
+            {% endif %}
+            <div class="board">
+                {% for cells in board %}
+                    {% for cell in cells %}
+                        <div class="cell" data-id="{{ cell }}"><span class="move{% if cell == 'X' %} orange{% else %} blue{% endif %}">{% if cell == 'X' or cell == 'O' %}{{ cell }}{% else %} {% endif %}</span></div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <button class="button" onclick="rewriteBoard(0, 'New game')" type="submit" name="send">New game</button>
+        </div>
 
-<div class="main_content">
+        <script>
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
 
-    {% if over == False %}
-    {% else %}
-        <span class="end_game">{{ over }}</span>
-    {% endif %}
+            async function rewriteBoard(value, name) {
+                const form = new FormData();
+                    form.append('csrfmiddlewaretoken', getCookie('csrftoken'));
+                    form.append('value', value);
+                    form.append('send', name);
 
-{#    <h1 style="font-family: 'Arial'; font-size: 130px; letter-spacing: 15px; text-transform: uppercase; color: brown; margin: 0 auto; opacity: .3;">Game</h1>#}
-    <div class="board">
-        {% for bb in board %}
-            {% for b in bb %}
-                <div class="cell" data-id="{{ b }}"><span class="move{% if b == 'X' %} orange{% else %} blue{% endif %}">{% if b == 'X' or b == 'O' %}{{ b }}{% else %} {% endif %}</span></div>
-            {% endfor %}
-        {% endfor %}
-    </div>
+                const response = await fetch('http://127.0.0.1:8000/', {
+                        method: 'POST',
+                        credentials: 'include',
+                        body: form,
+                    });
 
-    <button class="button" onclick="rewriteBoard(0, 'New game')" type="submit" name="send">New game</button>
+                const res = await response.text();
 
-</div>
+                document.open();
+                document.write(res);
+                document.close();
+            }
 
-
-<script>
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-
-    async function rewriteBoard(value, name) {
-        const form = new FormData();
-            form.append('csrfmiddlewaretoken', getCookie('csrftoken'));
-            form.append('value', value);
-            form.append('send', name);
-
-        const resp = await fetch('http://127.0.0.1:8000/', {
-                method: 'POST',
-                credentials: 'include',
-                body: form,
+            document.querySelectorAll('[data-id]').forEach(cell => {
+                cell.addEventListener('click', ({target: {dataset: {id}}}) => {
+                    if (id === 'O' || id === 'X') return;
+                    rewriteBoard(id, 'Make move')
+                });
             });
-
-        const res = await resp.text();
-
-        document.open();
-        document.write(res);
-        document.close();
-    }
-
-    document.querySelectorAll('[data-id]').forEach(cell => {
-        cell.addEventListener('click', ({target: {dataset: {id}}}) => {
-            // if (['X', '0'].includes(id)) return;
-            if (id === 'O' || id === 'X') return;
-
-            rewriteBoard(id, 'Make move')
-        });
-    });
-</script>
-</body>
+        </script>
+    </body>
 </html>

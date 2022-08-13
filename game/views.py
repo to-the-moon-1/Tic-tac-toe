@@ -41,8 +41,6 @@ def index(request):
         else:
             pass
 
-    over = game_is_over(my_board)
-
-    context = {'board': my_board, 'over': over}
+    context = {'board': my_board, 'end_game': game_is_over(my_board)}
 
     return render(request, 'html/index.html', context)
