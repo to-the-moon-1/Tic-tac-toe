@@ -36,14 +36,9 @@
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    function getToken() {
-        const tokenCookie = getCookie('csrftoken');
-        if (tokenCookie) return tokenCookie;
-    }
-
     async function rewriteBoard(value, name) {
         const form = new FormData();
-        form.append('csrfmiddlewaretoken', getToken());
+        form.append('csrfmiddlewaretoken', getCookie('xcsrftoken'));
         form.append('value', value);
         form.append('send', name);
 
