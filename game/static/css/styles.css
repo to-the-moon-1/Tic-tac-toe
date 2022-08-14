@@ -76,3 +76,14 @@
   display: flex;
   justify-content: center;
 }
+
+@media (max-width: 480px) {
+  .board {
+    width: 300px;
+  }
+
+  .cell {
+    height: 92px;
+    width: 92px;
+  }
+}
