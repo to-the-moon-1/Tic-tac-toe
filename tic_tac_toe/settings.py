@@ -70,8 +70,14 @@ WSGI_APPLICATION = 'tic_tac_toe.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgres',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'd7i71ans2fdh6s',
+        'HOST': 'ec2-44-206-137-96.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USERNAME': 'ckjjansmljeqqb',
+        'PASSWORD': 'c824bd9188df86c86ace8bfc73e29975fdea0826278d28940812920d76414f36',
     }
 }
 
