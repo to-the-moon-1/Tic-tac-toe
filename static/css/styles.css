@@ -1,0 +1,78 @@
+.background {
+  background-image: url('../media/background.png');
+  background-size: cover;
+  margin: 0;
+}
+
+.main_content {
+  flex-direction: column;
+  height: 100vh;
+  margin: auto;
+  max-width: 800px;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  width: 444px;
+}
+
+.cell {
+  background-color: #dce8ee;
+  border-radius: 5px;
+  height: 140px;
+  margin: 4px;
+  width: 140px;
+}
+
+.move {
+  font-size: 62px;
+}
+
+.orange {
+  color: #a52d2d;
+  text-shadow: 1px 1px 2px rgb(70 0 0 / 85%);
+}
+
+.blue {
+  color: #268000;
+  text-shadow: 1px 1px 2px rgb(28 56 0 / 100%);
+}
+
+.button {
+  background: linear-gradient(
+    3deg,
+    rgb(0, 58, 116) 0%,
+    rgb(2, 112, 168) 60%,
+    rgb(43, 166, 227) 100%
+  );
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 1px 10px rgba(0, 35, 56, 0.5);
+  color: #e2eef3;
+  font-size: 20px;
+  padding: 10px;
+  text-shadow: 1px 1px 1px rgba(0, 10, 21, 0.3);
+  width: 250px;
+}
+
+.end_game {
+  color: #efc51c;
+  font-size: 50px;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(208, 160, 4, 0.3);
+}
+
+.move, .button, .end_game {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+.main_content, .cell {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

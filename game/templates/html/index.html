@@ -38,7 +38,8 @@
                     form.append('value', value);
                     form.append('send', name);
 
-                const response = await fetch('http://127.0.0.1:8000/', {
+                {#const response = await fetch('http://127.0.0.1:8000/', {#}
+                const response = await fetch('http://0.0.0.0:5000/', {
                         method: 'POST',
                         credentials: 'include',
                         body: form,
