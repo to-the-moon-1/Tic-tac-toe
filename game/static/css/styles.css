@@ -87,6 +87,10 @@
     width: 92px;
   }
 
+  .button {
+    width: 200px;
+  }
+
   .end_game {
     font-size: 40px;
   }
