@@ -87,11 +87,18 @@
     width: 92px;
   }
 
+  .move {
+    font-size: 54px;
+  }
+
   .button {
     width: 200px;
   }
 
   .end_game {
-    font-size: 40px;
+    font-size: 55px;
+    width: 300px;
+    line-height: 60px;
+    margin-bottom: 25px;
   }
 }
