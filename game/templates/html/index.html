@@ -38,7 +38,7 @@
 
     async function rewriteBoard(value, name) {
         const form = new FormData();
-        form.append('csrfmiddlewaretoken', getCookie('xcsrftoken'));
+        form.append('csrfmiddlewaretoken', getCookie('csrftoken'));
         form.append('value', value);
         form.append('send', name);
 
